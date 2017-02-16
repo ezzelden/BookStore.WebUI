@@ -1,0 +1,60 @@
+﻿@model BookStore.WebUI.Models.CartIndexViewModel
+
+@{
+    ViewBag.Titel = "BookStore : Your Cart";
+}
+
+<h2>Your Cart</h2>
+<table class="table table-striped" id="cartTable">
+    <thead class="thead-inverse">
+        <tr class="">
+            <th class="text-center">Item</th>
+            <th class="text-center">Quanitity</th>
+            <th class="text-center">Price</th>
+            <th class="text-center">SubTotals</th>
+        </tr>
+    </thead>
+    
+    <tbody class="">
+        @foreach (var line in Model.Cart.Lines)
+        {
+            <tr>
+                <td class="text-center">@line.Book.Title</td>
+                <td class="text-center">@line.Quantity</td>
+                <td class="text-center">@line.Book.Price.ToString("c")</td>
+                <td class="text-center">@((line.Quantity * line.Book.Price).ToString("c"))</td>
+                <td>
+                    @using (Html.BeginForm("RemoveFromCart", "Cart"))
+                    {
+                        @Html.Hidden("isbn", line.Book.ISBN)
+                        @Html.HiddenFor(x => x.ReturnUrl)
+                        <input class="btn btn-danger btn-sm" type="submit" value="Remove" />
+
+                    }
+                </td>
+            </tr>
+
+        }
+
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="3" class="text-right"><strong>Total:</strong></td>
+            <td class="text-right">
+                @Model.Cart.ComputeTotalValue().ToString("c")
+            </td>
+        </tr>
+    </tfoot>
+</table>
+
+<div class="text-center">
+   <a class="btn btn-primary" href="@(Model.ReturnUrl ?? "/Book/List")">Continue Shopping</a>
+
+    @Html.ActionLink("Checkout Now","Checkout",null, new { @class = "btn btn-primary"})
+
+
+@*@Html.ActionLink("Continue Shopping", "", "",
+    new { retuenUrl = ((Model.ReturnUrl == null) ? "Book/List" : Model.ReturnUrl).ToString() },
+    new { @class = "btn btn-primary" }
+    )*@
+</div>

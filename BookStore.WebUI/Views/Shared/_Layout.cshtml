@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/ErrorStyle.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div class="navbar navbar-inverse" role="navigation" >
+        <span class="hidden-xs">
+            @Html.ActionLink("Book Store", "List", "Book", null, new { @class = "navbar-brand" })
+        </span>
+        <a class="navbar-brand " href="/Book/List">
+            <div class="visible-xs">Book</div>
+            <div class="visible-xs">Store</div>
+        </a>
+        @Html.Action("Summary", "Cart")
+     </div>
+
+    <div class="container">
+        <div class="visible-xs">
+            @Html.Action("Menu","Nav", new { mopLayout = true })
+        </div>
+        <div class="row panel ">
+            <div id="Specialization" class="col-xs-3 hidden-xs">
+                @Html.Action("Menu", "Nav")
+            </div>
+            <div class="container col-xs-12 col-sm-8">
+                @RenderBody()
+
+            </div>
+        </div>
+    </div>
+   
+
+   
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+
+    
+</body>
+</html>

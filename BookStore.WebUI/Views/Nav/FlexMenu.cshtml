@@ -1,0 +1,27 @@
+﻿@model IEnumerable<string>
+
+@{
+    bool MopView = (bool)(ViewContext.RouteData.Values["mopLayout"] ?? false);
+
+
+    string Classes = MopView ? " btn-group btn-group-sm" : null;
+
+}
+
+
+<div class="@Classes">    
+    
+        @Html.ActionLink("Home", "List", "Book", null,
+       new { @class = MopView ? " btn btn-default btn-sm" : " btn btn-block btn-default btn-lg " })
+    
+
+
+    @foreach (var link in Model)
+    {
+        @Html.RouteLink(link,
+        new { controller = "Book", Action = "List", specilization = link, page = 1 },
+        new { @class = (MopView ? " btn btn-default btn-sm " : " btn btn-block btn-default btn-lg ")
+        + ((link == ViewBag.SelectedSpec) ? " btn-primary " : "").ToString() })
+    }
+</div>
+

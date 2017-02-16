@@ -1,0 +1,28 @@
+﻿
+.well {
+        overflow: hidden !important;
+}
+
+.btn-block {
+        overflow: hidden !important;
+         text-overflow: ellipsis !important
+}
+
+#cartTable td{
+    vertical-align:middle;
+
+}
+
+.navbar-right {
+    float: right !important;
+    margin-right: 15px;
+    margin-left:15px;
+
+}
+
+
+.contact-form {
+    max-width: 450px;
+    margin: 20px auto
+
+}

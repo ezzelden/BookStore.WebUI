@@ -1,0 +1,16 @@
+﻿@model BookStore.Domain.Entities.Cart
+
+<div class="navbar-right">
+    @Html.ActionLink("Checkout","Index","Cart",
+    new { retuenUrl = Request.Url.PathAndQuery},
+    new {@class="btn btn-default navbar-btn"}
+
+)
+</div>
+
+<div class="navbar-text navbar-right">
+    <b>Your Cart : </b>
+    @Model.Lines.Sum(x => x.Quantity) Book(s),
+    @Model.ComputeTotalValue().ToString("c")
+
+</div>

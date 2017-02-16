@@ -1,0 +1,63 @@
+﻿@model IEnumerable<BookStore.Domain.Entities.Book>
+
+@{
+    ViewBag.Title = "Admin";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+    <h2>Book Store</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+
+<div class="panel panel-default" >
+
+    <div class="panel-heading">
+        <h3>All Books</h3>
+    </div>
+
+    <div class="panel-body">
+        <table class="table table-striped">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Price)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Specialization)
+                </th>
+                <th>Control</th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @item.Price.ToString("c")
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Specialization)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { ISBN = item.ISBN }) |
+                        @Html.ActionLink("Details", "Details", new { ISBN = item.ISBN }) |
+                        @Html.ActionLink("Delete", "Delete", new { ISBN = item.ISBN })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>
